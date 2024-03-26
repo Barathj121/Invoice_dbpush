@@ -4,7 +4,7 @@ from typing import Optional,Dict
 import psycopg2
 from fastapi.middleware.cors import CORSMiddleware
 
-DATABASE_URL = "dbname=aws_invoice user=aws_invoice_user password=oFsKPV03cSTIvRFwmkEiiJhnc99dNhxp host=dpg-cnu1hgda73kc73f5966g-a.singapore-postgres.render.com port=5432"
+DATABASE_URL = "dbname=aws_invoice user=aws_invoice_user password=oFsKPV03cSTIvRFwmkEiiJhnc99dNhxp host=dpg-cnu1hgda73kc73f5966g-a port=5432"
 
 app = FastAPI()
 
