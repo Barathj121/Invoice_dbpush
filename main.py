@@ -35,6 +35,7 @@ class Invoice(BaseModel):
     grand_total: float
     remark: Optional[str] = None
     image: Optional[str] = None
+    employee_id: int
 
 @app.get("/")
 async def root():
@@ -46,9 +47,9 @@ async def create_invoice(invoice: Invoice):
     cursor = conn.cursor()
 
     insert = f"""
-        INSERT INTO "Employee_forms" (invoice_number, bill_date, due_date, client_name, client_address, client_email, client_phone, supplier_name, supplier_address, supplier_email, supplier_phone, tax, sub_total, grand_total, remark, image)
+        INSERT INTO "invoice_forms2" (invoice_number, bill_date, due_date, client_name, client_address, client_email, client_phone, supplier_name, supplier_address, supplier_email, supplier_phone, tax, sub_total, grand_total, remark, image, employee_id)
         VALUES ('{invoice.invoice_number}', '{invoice.bill_date}', '{invoice.due_date}', '{invoice.client_name}', '{invoice.client_address}', '{invoice.client_email}', '{invoice.client_phone}', '{invoice.supplier_name}',
-                '{invoice.supplier_address}', '{invoice.supplier_email}', '{invoice.supplier_phone}', {invoice.tax}, {invoice.sub_total}, {invoice.grand_total}, '{invoice.remark}', '{invoice.image}')
+                '{invoice.supplier_address}', '{invoice.supplier_email}', '{invoice.supplier_phone}', {invoice.tax}, {invoice.sub_total}, {invoice.grand_total}, '{invoice.remark}', '{invoice.image}', {invoice.employee_id})
     """
 
     cursor.execute(insert)
@@ -77,9 +78,9 @@ async def upload_image(file: UploadFile = File(...)) -> Dict:
         "sub_total": 100.0,
         "grand_total": 110.0,
         "remark": "Sample remark",
-        "image": file.filename
+        "image": file.filename,
+        "employee_id": 1
     }
-
 
 # {
 #   "invoice_number": "141671",
